@@ -1,0 +1,38 @@
+# Configuración de Render para Sistema de Protección de Activos
+# Este archivo define los servicios que se desplegarán automáticamente
+
+services:
+  # Backend API (FastAPI)
+  - type: web
+    name: proteccion-activos-api
+    env: python
+    region: oregon
+    buildCommand: "pip install -r backend/requirements.txt"
+    startCommand: "cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false  # Configurar manualmente en Render
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.0
+  
+  # Frontend Dashboard (Streamlit)
+  - type: web
+    name: proteccion-activos-dashboard
+    env: python
+    region: oregon
+    buildCommand: "pip install -r frontend/requirements.txt"
+    startCommand: "cd frontend && streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true"
+    plan: free
+    envVars:
+      - key: API_URL
+        fromService:
+          type: web
+          name: proteccion-activos-api
+          envVarKey: RENDER_EXTERNAL_URL
+          property: url
+      - key: PYTHON_VERSION
+        value: 3.11.0
