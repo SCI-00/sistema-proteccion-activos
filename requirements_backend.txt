@@ -1,4 +1,4 @@
-# Backend Requirements - Sistema de Protección de Activos
+# Backend Requirements - Solo lo esencial
 # Python 3.11+
 
 # Core Framework
@@ -9,7 +9,6 @@ python-multipart==0.0.6
 # Database
 sqlalchemy==2.0.25
 psycopg2-binary==2.9.9
-alembic==1.13.1
 
 # Authentication & Security
 python-jose[cryptography]==3.3.0
@@ -21,24 +20,8 @@ pydantic==2.5.3
 pydantic-settings==2.1.0
 email-validator==2.1.0
 
-# Data Processing
-pandas==2.1.4
-openpyxl==3.1.2
-numpy==1.26.3
-
 # HTTP Client
 requests==2.31.0
-httpx==0.26.0
-
-# Email
-aiosmtplib==3.0.1
 
 # Utilities
 python-dateutil==2.8.2
-pytz==2023.3
-
-# Development
-pytest==7.4.4
-pytest-asyncio==0.23.3
-black==23.12.1
-flake8==7.0.0
