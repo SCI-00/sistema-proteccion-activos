@@ -14,10 +14,11 @@ class Usuario(Base):
     password_hash = Column(String, nullable=False)
     
     rol = Column(String(50), nullable=False, default="Usuario")
-    # Roles: Administrador, Supervisor, Gerente CEDIS, Consulta
+    # Roles: Administrador, Supervisor, Gerente CEDIS, Consultor
     
     organizacion_id = Column(Integer, nullable=True)
     cedis_asignados = Column(String, nullable=True)
+    
     permisos = Column(String, nullable=True)
     
     activo = Column(Boolean, default=True)
