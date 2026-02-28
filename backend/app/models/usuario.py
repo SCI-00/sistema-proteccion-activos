@@ -1,8 +1,7 @@
 """
 Modelo de Usuario
 """
-
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, ARRAY, JSON
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.sql import func
 from app.core.database import Base
 
@@ -18,9 +17,8 @@ class Usuario(Base):
     # Roles: Administrador, Supervisor, Gerente CEDIS, Consulta
     
     organizacion_id = Column(Integer, nullable=True)
-    cedis_asignados = Column(ARRAY(Integer), default=[])
-    
-    permisos = Column(JSON, default={})
+    cedis_asignados = Column(String, nullable=True)
+    permisos = Column(String, nullable=True)
     
     activo = Column(Boolean, default=True)
     ultimo_login = Column(DateTime(timezone=True), nullable=True)
